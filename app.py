@@ -27,7 +27,7 @@ admin.add_view(ModelView(Music, db.session))
 def index():
     return render_template('index.html')
 
-# ... rest of your code ...
+
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -41,6 +41,8 @@ def register():
         return redirect(url_for('login'))
     return render_template('register.html')
 
+
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -50,7 +52,9 @@ def login():
         if user and check_password_hash(user.password_hash, password):
             session['user_id'] = user.id
             return redirect(url_for('profile'))
-        flash('Invalid username or password')
+        else:
+            flash('Invalid username or password')
+
     return render_template('login.html')
 
 

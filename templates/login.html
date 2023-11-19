@@ -3,13 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Login</title>
+    <!-- Include Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
-<body>
-    <form method="POST">
-        <input type="text" name="username" placeholder="Username" required>
-        <input type="password" name="password" placeholder="Password" required>
-        <input type="submit" value="Login">
-    </form>
-</body>
-</html>
+<style>
+    /* Remove any default margin or padding on the body */
+    body {
+        margin: 0;
+        padding: 0;
+    }
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{{ url_for('index') }}"><span class="text-warning">SonicScape</span></a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{{ url_for('index') }}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('music') }}">Music</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('profile') }}">Profile</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="btn btn-outline-primary me-2" href="{{ url_for('login') }}">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-outline-success" href="{{ url_for('register') }}">Register</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<body style="height: 100vh;">
+    <div class="container text-center mt-5" style="max-width: 400px;">
+        <img src="static/images/note.jpg" alt="Logo" class="img-fluid mx-auto d-block mt-2" style="max-width: 100%; height: auto;">
+        <br>
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <form method="POST">
+                    <div class="mb-3">
+                        <input type="text" name="username" class="form-control" id="username" placeholder="Username" required>
+                    </div>
+                    <div class="mb-3">
+                        <input type="password" name="password" class="form-control" id="password" placeholder="Password" required>
+                    </div>
+                    <div class="mb-3">
+                        <button type="submit" class="btn btn-primary btn-block">Login</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-5">
+        <div class="jumbotron text-center">
+            <h1 class="display-4">Free Music Downloads</h1>
+            <p class="lead">Discover the sound of freedom! 🎶 Enjoy unlimited free music.</p>
+            <hr class="my-4">
+            <p>Dive into a world of melodies, rhythms, and beats—all at your fingertips.</p>
+            <a class="btn btn-primary btn-lg" href="{{ url_for('music') }}" role="button">Listen to Music</a>
+
+            <p class="mt-3">Sign in to download your favorite tracks and take your music with you wherever you go.</p>
+        </div>
+    </div>
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    -->
+
+    <footer class="mt-5 py-4 bg-dark text-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <ul class="list-inline text-center">
+                        <li class="list-inline-item"><a href="/privacy-policy">Privacy Policy</a></li>
+                        <li class="list-inline-item"><a href="/terms-of-service">Terms of Service</a></li>
+                        <li class="list-inline-item"><a href="/contact">Contact Us</a></li>
+                        <li class="list-inline-item"><a href="/signup">Sign Up</a></li>
+                        <li class="list-inline-item"><a href="mailto:contact@example.com">Email Us</a></li>
+                        <li class="list-inline-item"><a href="/business-inquiries">Business Inquiries</a></li>
+                    </ul>
+                    <p>Follow Us: 
+                        <a href="https://www.facebook.com/YourCompany" target="_blank" rel="noopener noreferrer">Facebook</a> |
+                        <a href="https://twitter.com/YourCompany" target="_blank" rel="noopener noreferrer">Twitter</a> |
+                        <a href="https://www.instagram.com/YourCompany" target="_blank" rel="noopener noreferrer">Instagram</a>
+                    </p>
+                    <p>&copy; 2023 Your Company Name. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+       
+  </body>
+  </html>
