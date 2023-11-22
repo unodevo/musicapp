@@ -15,6 +15,7 @@ class User(db.Model):
     music = db.relationship('Music', secondary=user_music, backref='users')
 
 
+
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
 

@@ -45,17 +45,23 @@ def register():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    error_message = None  # Initialize an error message variable
+
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
         user = User.query.filter_by(username=username).first()
+
         if user and check_password_hash(user.password_hash, password):
             session['user_id'] = user.id
             return redirect(url_for('profile'))
         else:
-            flash('Invalid username or password')
+            error_message = 'Invalid username or password'  # Set the error message
 
-    return render_template('login.html')
+    return render_template('login.html', error_message=error_message)
+
+
+
 
 
 @app.route('/music')
@@ -95,6 +101,48 @@ def profile():
 
     user = User.query.get(session['user_id'])
     return render_template('profile.html', user=user)
+
+@app.route('/remove_from_profile/<int:music_id>', methods=['POST'])
+def remove_from_profile(music_id):
+    # Check if user is logged in
+    if 'user_id' not in session:
+        flash('Please log in to remove songs from your favorites.')
+        return redirect(url_for('login'))
+
+    # Retrieve the user and song
+    user = User.query.get(session['user_id'])
+    song = Music.query.get(music_id)
+
+    # Remove the song from the user's profile if it exists
+    if song in user.music:
+        user.music.remove(song)
+        db.session.commit()
+        flash('Song removed from your favorites.')
+    else:
+        flash('Song not found in your favorites.')
+
+    # Redirect to the profile page
+    return redirect(url_for('profile'))
+
+
+
+
+@app.route('/privacy_policy')
+def privacy_policy():
+    # Add your Privacy Policy content here
+    return render_template('privacy_policy.html')
+
+@app.route('/service')
+def service():
+    return render_template('service.html')
+
+@app.route('/faq')
+def faq():
+    return render_template('faq.html')
+
+@app.route('/artists')
+def artists():
+    return render_template('artists.html')
 
 
 @app.route('/logout', methods=['POST'])
