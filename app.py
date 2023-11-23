@@ -1,4 +1,3 @@
-
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
@@ -31,7 +30,6 @@ def index():
     return render_template('index.html')
 
 
-
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
@@ -43,7 +41,6 @@ def register():
         db.session.commit()
         return redirect(url_for('login'))
     return render_template('register.html')
-
 
 
 @app.route('/login', methods=['GET', 'POST'])
