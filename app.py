@@ -1,4 +1,3 @@
-# Import necessary modules for your Flask application
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
@@ -6,21 +5,16 @@ from werkzeug.security import check_password_hash
 from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
 
-
-import os
-
-# Create a Flask application instance
 app = Flask(__name__)
 
-# Use PostgreSQL as the database (comment this line if you want to switch to SQLite)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://omjzkvuadfozik:a7ac77fc0aba7a96044a6afce4a53e846eb98991bbd67e03077fe5ec276527d9@ec2-34-202-53-101.compute-1.amazonaws.com:5432/d68eku46b1uds'
-
-app.secret_key = os.environ.get('SECRET_KEY')
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///mydatabase.db'
+app.secret_key = 'kjdn983hdeidj09w3rhbg598hq2diwdjod9r6f6uuehudwiy4ygfyiro494jfjdshdir'  # Replace with a real secret key
 
 # Initialize SQLAlchemy with your Flask app instance
-db.init_app(app)
+db = SQLAlchemy(app)
 
-# Import your models here (after initializing db)
+# Import your models here
 from models import User, Music
 
 migrate = Migrate(app, db)
@@ -28,14 +22,7 @@ migrate = Migrate(app, db)
 # Initialize Flask-Admin
 admin = Admin(app, name='MyApp Admin', template_mode='bootstrap3')
 admin.add_view(ModelView(User, db.session))
-admin.add_view(ModelView(Music, db.session))
-
-# ... Your User and Music models code ...
-
-# shared.py
-from flask_sqlalchemy import SQLAlchemy
-
-db = SQLAlchemy()
+admin.add_view(ModelView(Music, db.session)) 
 
 @app.route('/')
 def index():
