@@ -5,7 +5,7 @@ from flask_migrate import Migrate
 from werkzeug.security import check_password_hash
 from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
-from shared import db  # Import the db instance from shared.py
+
 
 import os
 
