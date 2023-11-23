@@ -8,8 +8,9 @@ from flask_admin.contrib.sqla import ModelView
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://zqrihbwmlixhvj:68ac0583d16edb5eebfef4f8d2e018f6e45d2be032e6358e725b22575638c074@ec2-107-21-67-46.compute-1.amazonaws.com:5432/d9prj8a97nke0j'
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://zqrihbwmlixhvj:68ac0583d16edb5eebfef4f8d2e018f6e45d2be032e6358e725b22575638c074@ec2-107-21-67-46.compute-1.amazonaws.com:5432/d9prj8a97nke0j'
 
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///mydatabase.db'
 app.secret_key = 'kjdn983hdeidj09w3rhbg598hq2diwdjod9r6f6uuehudwiy4ygfyiro494jfjdshdir'  # Replace with a real secret key
 
 # Initialize SQLAlchemy with your Flask app instance
